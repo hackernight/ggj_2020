@@ -42,7 +42,12 @@ public class CharacterScript : MonoBehaviour
                 allPaired &= sockInventory[i]%2 == 0;
             }
             //We wanna play victory and leave the room. 
-            SceneManager.LoadScene("Victory");
+            if(allPaired) {
+                SceneManager.LoadScene("Victory");
+            } else {
+                //we need some feedback here on how to sock
+            }
+            
         }
 
         if(collision.gameObject.tag == "Sock")
