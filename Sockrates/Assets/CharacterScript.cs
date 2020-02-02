@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class CharacterScript : MonoBehaviour
 {
+    public AudioSource audio;
+    public AudioClip wallHit, anger, sockGet, walk;
     public int speed;
     int[] sockInventory = new int[20];
     Rigidbody2D rb2d;
     // Start is called before the first frame update
     void Start()
     {
+        audio = GetComponent<AudioSource>();
         rb2d = GetComponent<Rigidbody2D>();
         for (int i =0; i < sockInventory.Length; i++)
         {
@@ -92,6 +95,9 @@ public class CharacterScript : MonoBehaviour
             sockInventory[index]++;
             Debug.Log(string.Format("Sock added to {0}.", index));
             Destroy(collision.gameObject);
+            // AudioClip.PlayOneShot(sockGet, 0.7f);
+            return;
         }     
+        // AudioClip.PlayOneShot(wallHit, 0.7f);
     }
 }
