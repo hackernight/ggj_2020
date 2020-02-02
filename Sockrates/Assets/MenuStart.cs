@@ -7,6 +7,7 @@ public class MenuStart : MonoBehaviour
 {
     public void startGame(string screenName)
     {
-        SceneManager.LoadScene("TutorialScene");
+        Debug.Log(string.Format("Moving to scene: {0}", screenName));
+        SceneManager.LoadScene(screenName);
     }
 }
