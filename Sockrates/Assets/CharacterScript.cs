@@ -6,6 +6,8 @@ public class CharacterScript : MonoBehaviour
 {
     public AudioSource audio;
     public AudioClip wallHit, anger, sockGet, walk;
+    
+    public int madPercent;
     public int speed;
     int[] sockInventory = new int[20];
     Rigidbody2D rb2d;
@@ -95,9 +97,20 @@ public class CharacterScript : MonoBehaviour
             sockInventory[index]++;
             Debug.Log(string.Format("Sock added to {0}.", index));
             Destroy(collision.gameObject);
-            // AudioClip.PlayOneShot(sockGet, 0.7f);
+            audio.clip = sockGet;
+            audio.Play();
             return;
-        }     
-        // AudioClip.PlayOneShot(wallHit, 0.7f);
+        }
+        float mad = Random.Range(1f,100f);
+        Debug.Log(string.Format("Mad: {0} and percent: {1}", mad, madPercent));
+        if(mad < madPercent) {
+            Debug.Log("Playing mad music");
+            audio.clip = anger;
+            audio.Play();
+            return;
+        }
+
+        audio.clip = wallHit;
+        audio.Play();     
     }
 }
